@@ -1,27 +1,28 @@
 pipeline {
     agent any
-    environment {
-        TERRAFORM_WORKING_DIR = "/terraform-EC2"
-    }
+
     stages {
-        stage('terraform-init') {
+        stage('Checkout') {
             steps {
-                sh "terraform init ${TERRAFORM_WORKING_DIR}"
+                checkout scm
             }
         }
-        stage('terraform-validate') {
+
+        stage('Terraform Init') {
             steps {
-                sh "terraform validate ${TERRAFORM_WORKING_DIR}"
+                sh 'terraform -chdir=/terraform-EC2 init'
             }
         }
-        stage('terraform-plan') {
+
+        stage('Terraform Plan') {
             steps {
-                sh "terraform plan ${TERRAFORM_WORKING_DIR}"
+                sh 'terraform -chdir=/terraform-EC2 plan'
             }
         }
-        stage('terraform-apply') {
+
+        stage('Terraform Apply') {
             steps {
-                sh "terraform apply -auto-approve ${TERRAFORM_WORKING_DIR}"
+                sh 'terraform -chdir=/terraform-EC2 apply -auto-approve'
             }
         }
     }
