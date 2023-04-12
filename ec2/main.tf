@@ -21,7 +21,7 @@ resource "aws_s3_bucket_object" "private_key" {
 }
 
 # Create a EC2 Instance (Ubuntu 20)
-resource "aws_instance" "node" {
+resource "aws_instance" "example" {
   instance_type          = "t2.micro" # free instance
   ami                    = "ami-007855ac798b5175e"
   key_name               = aws_key_pair.key_pair.id
