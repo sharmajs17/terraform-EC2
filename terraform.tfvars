@@ -1,3 +1,3 @@
-aws_access_key = "AKIA4QZWCNNCYIRINPRD"
-aws_secret_key = "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"
+aws_access_key = "AKIARLZMBU6VJ2JJEVOA"
+aws_secret_key = "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"
 access_ip      = "0.0.0.0/0"
