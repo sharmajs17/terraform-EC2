@@ -6,7 +6,7 @@ resource "tls_private_key" "key" {
 
 # Generate a Private Key and encode it as PEM.
 resource "aws_key_pair" "key_pair" {
-  key_name   = "key"
+  key_name   = "key1"
   public_key = tls_private_key.key.public_key_openssh
 
   provisioner "local-exec" {
