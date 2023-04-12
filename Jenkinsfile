@@ -10,13 +10,13 @@ pipeline {
         
         stage('Terraform Plan') {
             steps {
-                sh "cd ~ && terraform -chdir=/terraform-EC2 plan"
+                sh "cd ~ && terraform -chdir=/terraform-EC2 plan -lock=false"
             }
         }
         
         stage('Terraform Apply') {
             steps {
-                sh "cd ~ && terraform -chdir=/terraform-EC2 apply -auto-approve"
+                sh "cd ~ && terraform -chdir=/terraform-EC2 apply -auto-approve -lock=false"
             }
         }
         
