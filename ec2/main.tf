@@ -5,13 +5,19 @@ resource "tls_private_key" "key" {
 }
 
 # Generate a Private Key and encode it as PEM.
-resource "aws_key_pair" "key_pair" {
-  key_name   = "key1"
-  public_key = tls_private_key.key.public_key_openssh
+#resource "aws_key_pair" "key_pair" {
+#  key_name   = "key1"
+#  public_key = tls_private_key.key.public_key_openssh
 
-  provisioner "local-exec" {
-    command = "echo '${tls_private_key.key.private_key_pem}' > ./key.pem"
-  }
+#  provisioner "local-exec" {
+#    command = "echo '${tls_private_key.key.private_key_pem}' > ./key.pem"
+#  }
+#}
+
+resource "aws_s3_bucket_object" "private_key" {
+  bucket = "qwerty12345asdfg"
+  key    = "mykey.pem"
+  content = tls_private_key.my_key.private_key_pem
 }
 
 # Create a EC2 Instance (Ubuntu 20)
